@@ -1,0 +1,6 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.jin.config.RpcAutoConfigration
+
+org.springframework.context.ApplicationContextInitializer=\
+com.jin.utils.ApplicationUtils

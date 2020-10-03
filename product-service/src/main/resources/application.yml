@@ -1,0 +1,53 @@
+server:
+  port: 9999
+
+seata:
+  enabled: true
+  application-id: product  #可自定义
+  tx-service-group: jin_tx_group #可自定义
+  enable-auto-data-source-proxy: true
+  config:
+    type: nacos
+    nacos:
+      server-addr: localhost
+      namespace: 0355fdde-06fa-4090-bbba-c5896a485fa2
+
+  registry:
+    type: nacos
+    nacos:
+      namespace: "58b2fe61-e47f-4f15-b3bc-0a89ce5e3cc7"
+      cluster: "seatacluster"
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      table-underline: true
+      db-type: mysql
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  mapper-locations: classpath:/mapper/*.xml
+  #mybatis-plus配置控制台打印完整带参数SQL语句
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/seata_product?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 5  #初始建立连接数量
+      minIdle: 5  #最小连接数量
+      maxActive: 20 #最大连接数量
+      maxWait: 10000  #获取连接最大等待时间，毫秒
+      testOnBorrow: true #申请连接时检测连接是否有效
+      testOnReturn: false #归还连接时检测连接是否有效
+      timeBetweenEvictionRunsMillis: 60000 #配置间隔检测连接是否有效的时间（单位是毫秒）
+      minEvictableIdleTimeMillis: 300000  #连接在连接池的最小生存时间（毫秒）
+      filter: stat,wall
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: ProductService
+  main:
+    allow-bean-definition-overriding: true # Spring Boot 2.1 需要设定
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 58b2fe61-e47f-4f15-b3bc-0a89ce5e3cc7
+        cluster-name: DEFAULT
+      config:
+        server-addr: 127.0.0.1:8848 # 配置中心地址
+        file-extension: yaml
+        namespace: 58b2fe61-e47f-4f15-b3bc-0a89ce5e3cc7 # 开发环境
+        group: jinnacosgroup # xx业务组
+
+rpc:
+  server:
+    port: 8888
+    timeout: 1000000
+  client:
+    rpcServername: AccountService
+
